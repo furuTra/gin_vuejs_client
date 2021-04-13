@@ -1,6 +1,7 @@
 <template>
   <div id="users">
     <p>Users List</p>
+    <p>全 : {{ getUsersNum }}件</p>
     <select v-model="total" @change="onChange()">
       <option v-for="(option, key) in total_options" :key="key" :value="option.value">
         {{ option.text }}
@@ -40,6 +41,9 @@ export default {
     getUsers() {
       return this.$store.getters.getUsers()
     },
+    getUsersNum() {
+      return this.$store.getters.getUsersNum()
+    }
   },
   methods: {
     onChange() {

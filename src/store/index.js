@@ -5,12 +5,16 @@ export const store = createStore({
   state () {
     return {
       users: [],
+      users_num: 0,
       msg: ''
     }
   },
   getters: {
     getUsers: (state) => () => {
       return state.users
+    },
+    getUsersNum: (state) => () => {
+        return state.users_num
     },
     getMsg: (state) => () => {
       return state.msg
@@ -20,6 +24,7 @@ export const store = createStore({
     setUsers (state, data) {
       state.users = data.users
       state.msg = data.msg
+      state.users_num = data.users_num
     }
   },
   actions: {
@@ -27,13 +32,15 @@ export const store = createStore({
     async getUsers (context, params) {
       const data = {
         users: [],
-        msg: ''
+        users_num: 0,
+        msg: '',
       }
       await axios.get('/users', {
           params: params
       })
       .then(response => {
-        data.users = response.data
+        data.users = response.data.User
+        data.users_num = response.data.Count
       })
       .catch(e => {
         data.msg = e
