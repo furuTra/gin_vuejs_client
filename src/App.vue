@@ -1,18 +1,15 @@
 <template>
-  <Users/>
-  <UserAdd/>
+  <div id="app">
+    <router-link to="/">Home</router-link> |
+    <router-link to="add">ユーザー追加</router-link>
+    <router-view/>
+  </div>
 </template>
 
 <script>
-import Users from './components/Users.vue'
-import UserAdd from './components/UserAdd.vue'
 
 export default {
   name: 'App',
-  components: {
-    Users,
-    UserAdd,
-  }
 }
 </script>
 
